@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Portal de Notícias</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="login-area" class="fade-in">
+    <h2>Entrar no Blog</h2>
+    <input type="text" id="username" placeholder="Usuário">
+    <input type="password" id="password" placeholder="Senha">
+    <button onclick="login()">Acessar</button>
+  </div>
+
+  
+  <div id="main-area" style="display:none;" class="fade-in">
+    <header class="header-bar slide-down">
+      <h1>Blog Noturno</h1>
+      <button onclick="logout()">Sair</button>
+    </header>
+    <section id="editor-area" style="display:none;" class="editor-section scale-in">
+      <h2>Painel do Editor</h2>
+      <div class="editor-card">
+        <label for="noticia-titulo">Título:</label>
+        <input type="text" id="noticia-titulo" placeholder="Digite o título">
+        <label for="noticia-texto">Texto:</label>
+        <textarea id="noticia-texto" placeholder="Escreva sua notícia..."></textarea>
+        <label for="noticia-imagem">Imagem:</label>
+        <input type="file" id="noticia-imagem" accept="image/*">
+        <label for="categoria">Categoria:</label>
+        <select id="categoria">
+          <option value="" disabled selected>Escolha a categoria</option>
+          <option value="politica">Política</option>
+          <option value="esportes">Esportes</option>
+          <option value="economia">Economia</option>
+          <option value="mundo">Mundo</option>
+          <option value="entretenimento">Entretenimento</option>
+        </select>
+        <button onclick="publicar()">Publicar</button>
+      </div>
+    </section>
+    <nav id="filtro-categorias" class="fade-in">
+      <button onclick="filtrarCategoria('todas')">Todas</button>
+      <button onclick="filtrarCategoria('politica')">Política</button>
+      <button onclick="filtrarCategoria('esportes')">Esportes</button>
+      <button onclick="filtrarCategoria('economia')">Economia</button>
+      <button onclick="filtrarCategoria('mundo')">Mundo</button>
+      <button onclick="filtrarCategoria('entretenimento')">Entretenimento</button>
+    </nav>
+    <h2 id="titulo-feed" class="slide-right">Feed de Notícias</h2>
+    <div id="feed"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

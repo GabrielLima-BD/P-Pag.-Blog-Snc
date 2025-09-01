@@ -1,0 +1,230 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #181c2f 0%, #232946 100%);
+  color: #eaeaea;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: background 0.7s;
+}
+
+/* Login */
+#login-area {
+  width: 340px;
+  margin: 7vh auto 0 auto;
+  padding: 32px 28px;
+  background: #232946cc;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  text-align: center;
+  animation: fadeIn 1.2s;
+  border: 1.5px solid #393e5c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#login-area input:focus {
+  border: 1.5px solid #6c63ff;
+  background: #232946;
+}
+
+#login-area button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, #6c63ff 60%, #232946 100%);
+}
+
+#main-area {
+  max-width: 900px;
+  margin: 40px auto 0 auto;
+  padding: 0 20px 40px 20px;
+  background: #181c2fbb;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  min-height: 80vh;
+  animation: fadeIn 1.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.editor-card label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #6c63ff;
+  text-align: left;
+}
+ 
+
+.editor-card input[type=text],
+.editor-card textarea,
+.editor-card select,
+.editor-card input[type=file] {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1.5px solid #393e5c;
+  background: #181c2f;
+  color: #eaeaea;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.3s, background 0.3s;
+  margin-bottom: 8px;
+}
+.editor-card input[type=text]:focus,
+.editor-card textarea:focus,
+.editor-card select:focus {
+  border: 1.5px solid #6c63ff;
+  background: #232946;
+}
+.editor-card textarea { height: 120px; resize: vertical; }
+.editor-card select {
+  appearance: none;
+  background: #232946;
+  border: 1.5px solid #6c63ff;
+  color: #eaeaea;
+  font-weight: bold;
+  cursor: pointer;
+}
+.editor-card button {
+  padding: 13px 0;
+  background: linear-gradient(90deg, #6c63ff 60%, #232946 100%);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px #181c2f44;
+  width: 100%;
+@media (max-width: 700px) {
+  .editor-section, .editor-card {
+    max-width: 98vw !important;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}
+}
+.editor-card button:hover {
+  background: linear-gradient(90deg, #232946 0%, #6c63ff 100%);
+  transform: scale(1.04);
+}
+
+
+#filtro-categorias {
+  margin: 18px 0 28px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  animation: fadeIn 1.2s;
+}
+#filtro-categorias button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #6c63ff 60%, #232946 100%);
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px #181c2f44;
+  transition: background 0.3s, transform 0.2s;
+}
+#filtro-categorias button:hover {
+  background: linear-gradient(90deg, #232946 0%, #6c63ff 100%);
+  transform: scale(1.05);
+}
+
+
+#feed {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeIn 1.2s;
+}
+.card {
+  background: #232946;
+  padding: 24px 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px #181c2f33;
+  border-left: 6px solid #6c63ff;
+  animation: scaleIn 0.7s;
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+.card:hover {
+  box-shadow: 0 8px 32px #181c2f66;
+  transform: scale(1.01);
+}
+.card h3 {
+  margin-bottom: 8px;
+  color: #6c63ff;
+  font-size: 1.3rem;
+}
+.card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 12px;
+  box-shadow: 0 2px 8px #181c2f44;
+  transition: transform 0.3s;
+}
+.card img:hover {
+  transform: scale(1.04) rotate(-1deg);
+}
+.card button {
+  background: linear-gradient(90deg, #ff6b6b 60%, #232946 100%);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+.card button:hover {
+  background: linear-gradient(90deg, #232946 0%, #ff6b6b 100%);
+  transform: scale(1.05);
+}
+.card.politica { border-left: 6px solid #ff6b6b; }
+.card.esportes { border-left: 6px solid #4caf50; }
+.card.economia { border-left: 6px solid #ffc107; }
+.card.mundo { border-left: 6px solid #2196f3; }
+.card.entretenimento { border-left: 6px solid #9c27b0; }
+
+#titulo-feed {
+  color: #eaeaea;
+  margin: 0 0 18px 0;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  animation: slideRight 1.1s;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideDown {
+  from { transform: translateY(-40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideRight {
+  from { transform: translateX(-40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Utilitários para animação */
+.fade-in { animation: fadeIn 1.2s; }
+.slide-down { animation: slideDown 1.1s; }
+.slide-right { animation: slideRight 1.1s; }
+.scale-in { animation: scaleIn 0.8s; }
