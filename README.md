@@ -4,16 +4,6 @@ Este projeto foi desenvolvido como parte das atividades do curso no **Senac**, c
 
 ---
 
-## 🚀 **O que tem de bom?**
-
-- **Página inicial** com os posts mais recentes em destaque  
-- **Navegação suave** entre categorias de conteúdo  
-- **Layout responsivo** que se adapta a qualquer tela (do celular ao PC)  
-- **Visual limpo e elegante**, com foco total na leitura  
-- **Área de contato** e seção "Sobre mim" para dar aquele toque pessoal
-
----
-
 ## 🛠️ **Tecnologias que fazem a mágica acontecer**
 
 - **HTML5**  
@@ -29,14 +19,5 @@ Mais do que só entregar um trabalho, a ideia foi aplicar na prática os conheci
 
 ---
 
-## 📸 **Preview**
 
-*(Aqui você pode adicionar prints do site ou um link para o projeto online, se tiver hospedado)*
-
----
-
-## 📂 **Como rodar o projeto**
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+https://gabriellima-bd.github.io/Pag.-Blog-Snc/
