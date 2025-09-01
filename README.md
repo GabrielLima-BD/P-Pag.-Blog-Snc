@@ -21,3 +21,8 @@ Mais do que só entregar um trabalho, a ideia foi aplicar na prática os conheci
 
 
 https://gabriellima-bd.github.io/Pag.-Blog-Snc/
+
+- editor
+- senha
+
+Senha para ambos: 123
