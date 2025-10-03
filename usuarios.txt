@@ -1,0 +1,17 @@
+=== USUÁRIOS E SENHAS DO BLOG ===
+
+EDITOR (tem todas as permissões):
+- Usuário: editor
+- Senha: 123
+
+LEITOR (só visualiza):
+- Usuário: leitor  
+- Senha: 123
+
+OBSERVAÇÃO: O usuário admin foi removido. Agora só existe editor e leitor.
+
+PERMISSÕES:
+- Editor: pode criar, editar e excluir notícias
+- Leitor: apenas visualiza as notícias
+
+===================================

@@ -2,57 +2,276 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Portal de Notícias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Noturno | Portal de Notícias Profissional</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
 <body>
 
+  <!-- Login Area -->
   <div id="login-area" class="fade-in">
-    <h2>Entrar no Blog</h2>
-    <input type="text" id="username" placeholder="Usuário">
-    <input type="password" id="password" placeholder="Senha">
-    <button onclick="login()">Acessar</button>
+    <div class="login-brand">
+      <i class="fas fa-moon"></i>
+      <h1>Blog Noturno</h1>
+      <p>Portal de Notícias Premium</p>
+    </div>
+    <div class="login-form">
+      <h2>Entrar no Blog</h2>
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Usuário">
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Senha">
+      </div>
+      <button onclick="login()">
+        <i class="fas fa-sign-in-alt"></i>
+        Acessar
+      </button>
+    </div>
   </div>
 
-  
-  <div id="main-area" style="display:none;" class="fade-in">
-    <header class="header-bar slide-down">
-      <h1>Blog Noturno</h1>
-      <button onclick="logout()">Sair</button>
-    </header>
-    <section id="editor-area" style="display:none;" class="editor-section scale-in">
-      <h2>Painel do Editor</h2>
-      <div class="editor-card">
-        <label for="noticia-titulo">Título:</label>
-        <input type="text" id="noticia-titulo" placeholder="Digite o título">
-        <label for="noticia-texto">Texto:</label>
-        <textarea id="noticia-texto" placeholder="Escreva sua notícia..."></textarea>
-        <label for="noticia-imagem">Imagem:</label>
-        <input type="file" id="noticia-imagem" accept="image/*">
-        <label for="categoria">Categoria:</label>
-        <select id="categoria">
-          <option value="" disabled selected>Escolha a categoria</option>
-          <option value="politica">Política</option>
-          <option value="esportes">Esportes</option>
-          <option value="economia">Economia</option>
-          <option value="mundo">Mundo</option>
-          <option value="entretenimento">Entretenimento</option>
-        </select>
-        <button onclick="publicar()">Publicar</button>
+  <!-- Main Application -->
+  <div id="main-area" style="display:none;">
+    <!-- Navigation Bar -->
+    <nav class="navbar" data-aos="fade-down">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <i class="fas fa-moon"></i>
+          <span>Blog Noturno</span>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="search-input" placeholder="Pesquisar notícias..." onkeyup="pesquisarNoticias()">
+        </div>
+        
+        <!-- User Profile -->
+        <div class="user-profile">
+          <div class="profile-info" onclick="toggleProfileMenu()">
+            <img src="https://i.pravatar.cc/40" alt="Profile" class="profile-avatar">
+            <span id="user-name">Usuário</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div id="profile-menu" class="profile-menu">
+            <a href="#" onclick="showProfile()"><i class="fas fa-user"></i> Meu Perfil</a>
+            <a href="#" onclick="showSettings()"><i class="fas fa-cog"></i> Configurações</a>
+            <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+          </div>
+        </div>
       </div>
-    </section>
-    <nav id="filtro-categorias" class="fade-in">
-      <button onclick="filtrarCategoria('todas')">Todas</button>
-      <button onclick="filtrarCategoria('politica')">Política</button>
-      <button onclick="filtrarCategoria('esportes')">Esportes</button>
-      <button onclick="filtrarCategoria('economia')">Economia</button>
-      <button onclick="filtrarCategoria('mundo')">Mundo</button>
-      <button onclick="filtrarCategoria('entretenimento')">Entretenimento</button>
     </nav>
-    <h2 id="titulo-feed" class="slide-right">Feed de Notícias</h2>
-    <div id="feed"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" data-aos="fade-right">
+      <div class="sidebar-section">
+        <h3><i class="fas fa-plus-circle"></i> Ações</h3>
+        <button id="new-post-btn" onclick="toggleEditor()" style="display:none;">
+          <i class="fas fa-edit"></i> Nova Postagem
+        </button>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3><i class="fas fa-filter"></i> Categorias</h3>
+        <div class="category-filters">
+          <button class="filter-btn active" onclick="filtrarCategoria('todas')">
+            <i class="fas fa-globe"></i> Todas
+          </button>
+          <button class="filter-btn" onclick="filtrarCategoria('politica')">
+            <i class="fas fa-landmark"></i> Política
+          </button>
+          <button class="filter-btn" onclick="filtrarCategoria('esportes')">
+            <i class="fas fa-futbol"></i> Esportes
+          </button>
+          <button class="filter-btn" onclick="filtrarCategoria('economia')">
+            <i class="fas fa-chart-line"></i> Economia
+          </button>
+          <button class="filter-btn" onclick="filtrarCategoria('mundo')">
+            <i class="fas fa-earth-americas"></i> Mundo
+          </button>
+          <button class="filter-btn" onclick="filtrarCategoria('entretenimento')">
+            <i class="fas fa-film"></i> Entretenimento
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3><i class="fas fa-users"></i> Autores em Destaque</h3>
+        <div class="author-list">
+          <div class="author-item">
+            <img src="https://i.pravatar.cc/30?img=1" alt="Author">
+            <div class="author-info">
+              <span class="author-name">Ana Silva</span>
+              <span class="author-posts">12 posts</span>
+            </div>
+            <button class="follow-btn" onclick="toggleFollow(this)">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="author-item">
+            <img src="https://i.pravatar.cc/30?img=2" alt="Author">
+            <div class="author-info">
+              <span class="author-name">João Santos</span>
+              <span class="author-posts">8 posts</span>
+            </div>
+            <button class="follow-btn" onclick="toggleFollow(this)">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Editor Section -->
+      <section id="editor-area" style="display:none;" class="editor-section" data-aos="zoom-in">
+        <div class="editor-header">
+          <h2><i class="fas fa-edit"></i> Painel do Editor</h2>
+          <button class="close-editor" onclick="toggleEditor()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="editor-card">
+          <div class="editor-tabs">
+            <button class="tab-btn active" onclick="switchTab('write')">
+              <i class="fas fa-edit"></i> Escrever
+            </button>
+            <button class="tab-btn" onclick="switchTab('preview')">
+              <i class="fas fa-eye"></i> Visualizar
+            </button>
+          </div>
+          
+          <div id="write-tab" class="tab-content">
+            <div class="form-group">
+              <label for="noticia-titulo"><i class="fas fa-heading"></i> Título:</label>
+              <input type="text" id="noticia-titulo" placeholder="Digite um título atrativo...">
+            </div>
+            
+            <div class="form-group">
+              <label for="noticia-autor"><i class="fas fa-user-edit"></i> Autor:</label>
+              <input type="text" id="noticia-autor" placeholder="Seu nome">
+            </div>
+            
+            <div class="form-group">
+              <label for="noticia-texto"><i class="fas fa-align-left"></i> Conteúdo:</label>
+              <textarea id="noticia-texto" placeholder="Escreva sua notícia aqui..."></textarea>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="noticia-imagem"><i class="fas fa-image"></i> Imagem:</label>
+                <input type="file" id="noticia-imagem" accept="image/*">
+              </div>
+              
+              <div class="form-group">
+                <label for="categoria"><i class="fas fa-tags"></i> Categoria:</label>
+                <select id="categoria">
+                  <option value="" disabled selected>Escolha a categoria</option>
+                  <option value="politica">Política</option>
+                  <option value="esportes">Esportes</option>
+                  <option value="economia">Economia</option>
+                  <option value="mundo">Mundo</option>
+                  <option value="entretenimento">Entretenimento</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="editor-actions">
+              <button class="btn-secondary" onclick="salvarRascunho()">
+                <i class="fas fa-save"></i> Salvar Rascunho
+              </button>
+              <button class="btn-primary" onclick="publicar()">
+                <i class="fas fa-paper-plane"></i> Publicar
+              </button>
+            </div>
+          </div>
+          
+          <div id="preview-tab" class="tab-content" style="display:none;">
+            <div id="preview-content">
+              <!-- Preview será mostrado aqui -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feed Header -->
+      <div class="feed-header" data-aos="fade-up">
+        <h2 id="titulo-feed">
+          <i class="fas fa-newspaper"></i> 
+          <span id="feed-title">Últimas Notícias</span>
+        </h2>
+        <div class="feed-controls">
+          <select id="sort-select" onchange="ordenarNoticias()">
+            <option value="recente">Mais Recentes</option>
+            <option value="popular">Mais Populares</option>
+            <option value="alfabetico">A-Z</option>
+          </select>
+          <button class="view-toggle" onclick="toggleView()">
+            <i class="fas fa-th-large"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Feed de Notícias -->
+      <div id="feed" class="news-feed" data-aos="fade-up" data-aos-delay="200"></div>
+      
+      <!-- Load More Button -->
+      <div class="load-more-container" data-aos="fade-up">
+        <button id="load-more-btn" onclick="carregarMais()" style="display:none;">
+          <i class="fas fa-plus"></i> Carregar Mais
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Floating Action Button (Mobile) -->
+  <button id="fab" onclick="toggleEditor()" style="display:none;">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <!-- Modal de Perfil -->
+  <div id="profile-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-user"></i> Meu Perfil</h3>
+        <button onclick="closeModal('profile-modal')">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="posts-count">0</span>
+            <span class="stat-label">Posts</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="followers-count">0</span>
+            <span class="stat-label">Seguidores</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="following-count">0</span>
+            <span class="stat-label">Seguindo</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
+  <script>
+    // Inicializar AOS
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
 </body>
 </html>
